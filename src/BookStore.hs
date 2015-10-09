@@ -1,23 +1,24 @@
 module BookStore where
+import Customer
 
-type CustomerId = Int
+
 type ReviewBody = String
 type BookRecord = (BookInfo, BookReview)
-type Address = [String]
+
 type CardNumber = String
 type CardHolder = String
 
 bookId :: BookInfo -> Int
-bookId (Book id title authors) = id
+bookId (Book _ _ id) = id
 
 bookTitle::BookInfo -> String
-bookTitle (Book id title authors) = title
+bookTitle (Book title _ _) = title
 
 bookAuthors::BookInfo -> [String]
-bookAuthors (Book id title authors) = authors
+bookAuthors (Book _ authors _) = authors
 
 
-data BookInfo = Book Int String [String]
+data BookInfo = Book String [String] Int
                 deriving (Show)
 
 data MagazineInfo = Magazine Int String [String]
@@ -37,5 +38,5 @@ data Colors = Red
               |White
               deriving (Eq, Show)
 
-infoAboutBook::BookInfo -> String
-infoAboutBook b = "Book, title" ++ bookTitle(b)
+infoAboutBook::BookInfo -> String 
+infoAboutBook b = "Book, title " ++ bookTitle(b) ++ "id " ++  show (bookId(b))
