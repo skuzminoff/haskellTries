@@ -39,4 +39,4 @@ data Colors = Red
               deriving (Eq, Show)
 
 infoAboutBook::BookInfo -> String 
-infoAboutBook b = "Book, title " ++ bookTitle(b) ++ "id " ++  show (bookId(b))
+infoAboutBook b = "Book, title " ++ bookTitle b ++ "id " ++  show (bookId b)
