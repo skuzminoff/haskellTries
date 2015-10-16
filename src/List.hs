@@ -49,7 +49,7 @@ reverseList::[a] -> [a]
 reverseList [] = []
 reverseList (x:xs) = reverseList xs ++ [x]
 
-isPalindrome::[a] -> Bool
+isPalindrome::(Eq a) => [a] -> Bool
 isPalindrome list
     | ((count list) `mod` 2)/= 0 = False
     | otherwise = result
@@ -57,7 +57,7 @@ isPalindrome list
          l1 = fst $ splitAt ((length list) `div` 2) list
          l2 = snd $ splitAt ((length list) `div` 2) list
 
-compare':: [c]->[c]->Bool
+compare'::(Eq c) => [c]->[c]->Bool
 compare' a b 
     |length a /= length b = False
     |otherwise = result
@@ -68,7 +68,9 @@ cmp x y
     |x==y = True
     |otherwise = False
 
-cmpLists:: [a]->[a]->Bool
+cmpLists:: (Eq a) => [a]->[a]->Bool
 cmpLists [] _ = False
 cmpLists _ [] = False
+cmpLists [][] = True
+cmpLists _ _ = True
 cmpLists (x:xs) (y:ys) = (cmp x y) && (cmpLists xs ys)
